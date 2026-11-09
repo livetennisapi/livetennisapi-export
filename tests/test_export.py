@@ -158,3 +158,14 @@ def test_cli_without_a_key_exits_2(monkeypatch, tmp_path, capsys):
     monkeypatch.delenv("LIVETENNISAPI_KEY", raising=False)
     assert cli.main(["fixtures", "-o", str(tmp_path / "f.csv")]) == 2
     assert "LIVETENNISAPI_KEY" in capsys.readouterr().err
+
+
+def test_bad_destination_spends_no_requests(make_client):
+    client = make_client({"/fixtures": ["fixtures.json"]})
+    with pytest.raises(ValueError, match="stdout"):
+        export("fixtures", "-", client=client)
+    with pytest.raises(ValueError, match="Parquet"):
+        export("fixtures", "-", fmt="parquet", client=client)
+    with pytest.raises(ValueError, match="cannot tell"):
+        export("fixtures", "out.txt", client=client)
+    assert client.recorder.requests == []

@@ -78,7 +78,15 @@ def export(
     Nothing is written until every page has arrived, so a failed request never
     leaves a half-written file behind.
     """
-    if fmt is None and str(path) != "-":
+    # Check the destination before spending any requests on it.
+    if str(path) == "-":
+        if fmt is None:
+            raise ValueError("writing to stdout needs an explicit format")
+        if fmt == "parquet":
+            raise ValueError("Parquet is binary and cannot go to stdout; give a file name")
+    elif fmt is None:
         fmt = infer_format(path)
+    if fmt not in FORMATS:
+        raise ValueError(f"unknown format {fmt!r}; choose from {', '.join(FORMATS)}")
     rows = fetch(dataset, client=client, api_key=api_key, max_rows=max_rows, page_size=page_size, **params)
     return write(rows, path, fmt)
