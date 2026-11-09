@@ -8,6 +8,7 @@
 
 Matches, fixtures, players, rankings and tournaments for ATP, WTA, Challenger, ITF and juniors, from the command line or from Python.
 
+[![PyPI](https://img.shields.io/pypi/v/livetennisapi-export.svg)](https://pypi.org/project/livetennisapi-export/)
 [![CI](https://github.com/livetennisapi/livetennisapi-export/actions/workflows/ci.yml/badge.svg)](https://github.com/livetennisapi/livetennisapi-export/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -19,11 +20,9 @@ Matches, fixtures, players, rankings and tournaments for ATP, WTA, Challenger, I
 
 ## Install
 
-The package is not on PyPI yet. Until it is, install it from GitHub:
-
 ```bash
-pip install "livetennisapi-export @ git+https://github.com/livetennisapi/livetennisapi-export"
-pip install "livetennisapi-export[parquet] @ git+https://github.com/livetennisapi/livetennisapi-export"
+pip install livetennisapi-export
+pip install "livetennisapi-export[parquet]"
 ```
 
 The second line adds Parquet support.
