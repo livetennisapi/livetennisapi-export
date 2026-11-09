@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "id": "9001",
+      "name": "Example Open",
+      "tour": "atp",
+      "surface": "hard",
+      "indoor": true,
+      "city": null,
+      "country": null
+    }
+  ],
+  "meta": {
+    "limit": 200,
+    "offset": 0,
+    "count": 1,
+    "total": 1,
+    "has_more": false
+  }
+}

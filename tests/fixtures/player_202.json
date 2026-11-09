@@ -1,0 +1,24 @@
+{
+  "id": 202,
+  "name": "Test Player B",
+  "tour": "atp",
+  "country": "aaa",
+  "ranking": 40,
+  "ranking_points": 1100,
+  "ranking_status": "ranked",
+  "hand": "R",
+  "backhand": 2,
+  "birthday": null,
+  "height_cm": null,
+  "is_doubles_team": false,
+  "profile_version": 1,
+  "data_completeness": {
+    "known": 3,
+    "of": 9
+  },
+  "stats": {
+    "ratings": null,
+    "ratings_as_of": null,
+    "season": null
+  }
+}

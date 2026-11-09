@@ -1,0 +1,82 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "livetennisapi-export"
+dynamic = ["version"]
+description = "Export Live Tennis API data (matches, fixtures, players, rankings, tournaments) to CSV, JSON Lines or Parquet, from the command line or Python."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Live Tennis API", email = "hello@livetennisapi.com" }]
+keywords = [
+    "tennis", "tennis-api", "live-tennis-api", "livetennisapi", "sports-data",
+    "atp", "wta", "rankings", "export", "csv", "jsonl", "parquet", "pandas",
+    "etl", "data-export",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "livetennisapi>=1.8,<2",
+]
+
+[project.optional-dependencies]
+parquet = ["pandas>=1.5", "pyarrow>=12"]
+dev = [
+    "pytest>=8",
+    "jsonschema>=4.18",
+    "referencing>=0.30",
+    "pyyaml>=6",
+    "ruff>=0.6",
+    "pandas>=1.5",
+    "pyarrow>=12",
+]
+
+[project.scripts]
+livetennisapi-export = "livetennisapi_export.cli:main"
+
+[project.urls]
+Homepage = "https://livetennisapi.com"
+Documentation = "https://docs.livetennisapi.com"
+Pricing = "https://livetennisapi.com/pricing"
+Repository = "https://github.com/livetennisapi/livetennisapi-export"
+Issues = "https://github.com/livetennisapi/livetennisapi-export/issues"
+Changelog = "https://github.com/livetennisapi/livetennisapi-export/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "src/livetennisapi_export/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/livetennisapi_export"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/livetennisapi_export", "README.md", "LICENSE", "CHANGELOG.md", "tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM"]
+
+[tool.ruff.lint.isort]
+known-local-folder = ["conftest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

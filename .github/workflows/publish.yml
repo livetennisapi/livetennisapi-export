@@ -1,0 +1,70 @@
+name: publish
+
+# Publishes to PyPI when a GitHub Release is published, and at no other time.
+#
+# It uses PyPI Trusted Publishing (OIDC), so no PyPI token is stored in this
+# repository or its secrets.
+#
+# One-time setup on PyPI (Account, Publishing, Add a pending publisher):
+#   PyPI project name: livetennisapi-export
+#   Owner:             livetennisapi
+#   Repository:        livetennisapi-export
+#   Workflow name:     publish.yml
+#   Environment:       pypi
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - run: pip install -e ".[dev]" build twine
+      - name: Test before publishing
+        run: python -m pytest -q
+      - name: Check the tag matches the package version
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          PKG="$(python -c 'import livetennisapi_export as m; print(m.__version__)')"
+          if [ "${TAG#v}" != "$PKG" ]; then
+            echo "::error::release tag ($TAG) does not match the package version ($PKG)"
+            exit 1
+          fi
+      - run: python -m build
+      - run: twine check --strict dist/*
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: pypi
+      url: https://pypi.org/p/livetennisapi-export
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+        with:
+          attestations: true

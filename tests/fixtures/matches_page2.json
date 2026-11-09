@@ -1,0 +1,101 @@
+{
+  "data": [
+    {
+      "id": 5003,
+      "tournament": "Example Open",
+      "tour": "atp",
+      "tournament_id": "9001",
+      "tier": "atp_250",
+      "surface": "hard",
+      "indoor": true,
+      "format": "BO3",
+      "round": "Quarter-final",
+      "round_code": "QF",
+      "is_qualifying": false,
+      "status": "completed",
+      "event_status": "Finished",
+      "is_doubles": false,
+      "draw": "singles",
+      "scheduled_time": "2026-11-08T12:00:00Z",
+      "result_version": 1,
+      "players": {
+        "p1": {
+          "id": 101,
+          "name": "Test Player A",
+          "tour": "atp",
+          "country": "aaa",
+          "ranking": 12,
+          "ranking_points": 2500,
+          "ranking_status": "ranked",
+          "hand": "R",
+          "backhand": 2,
+          "birthday": null,
+          "height_cm": null,
+          "is_doubles_team": false,
+          "profile_version": 1,
+          "data_completeness": {
+            "known": 3,
+            "of": 9
+          }
+        },
+        "p2": {
+          "id": 404,
+          "name": "Test Player D",
+          "tour": "atp",
+          "country": "bbb",
+          "ranking": null,
+          "ranking_points": null,
+          "ranking_status": "unranked",
+          "hand": "R",
+          "backhand": 2,
+          "birthday": null,
+          "height_cm": null,
+          "is_doubles_team": false,
+          "profile_version": 1,
+          "data_completeness": {
+            "known": 3,
+            "of": 9
+          }
+        }
+      },
+      "score": {
+        "sets": [
+          1,
+          2
+        ],
+        "games": [
+          [
+            6,
+            3,
+            4
+          ],
+          [
+            4,
+            6,
+            6
+          ]
+        ],
+        "points": [
+          "0",
+          "0"
+        ],
+        "server": null,
+        "is_tiebreak": false,
+        "stale": false,
+        "detail": ""
+      },
+      "winner": 2,
+      "outcome": "completed",
+      "withdrew": null,
+      "has_analysis": false,
+      "has_market": false
+    }
+  ],
+  "meta": {
+    "limit": 2,
+    "offset": 2,
+    "count": 1,
+    "total": null,
+    "has_more": false
+  }
+}

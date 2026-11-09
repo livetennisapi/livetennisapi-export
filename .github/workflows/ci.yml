@@ -1,0 +1,69 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: py${{ matrix.python }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # actions/python-versions only builds 3.9 for Ubuntu 22.04 and 24.04.
+          - os: ubuntu-24.04
+            python: '3.9'
+          - os: ubuntu-latest
+            python: '3.12'
+          - os: ubuntu-latest
+            python: '3.13'
+          - os: windows-latest
+            python: '3.12'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: pip install -e ".[dev]"
+      - run: python -m pytest -q
+
+  lint:
+    name: lint, truth pin, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: pip install ruff build twine
+      - run: ruff check src tests
+      - run: ruff format --check src tests
+      - run: sh scripts/truthcheck.sh
+      - run: python -m build
+      - run: twine check --strict dist/*
+      - name: Install the wheel in a clean environment
+        run: |
+          python -m venv "$RUNNER_TEMP/clean"
+          "$RUNNER_TEMP/clean/bin/pip" install --quiet dist/*.whl
+          "$RUNNER_TEMP/clean/bin/livetennisapi-export" --version
+          "$RUNNER_TEMP/clean/bin/livetennisapi-export" matches --help > /dev/null

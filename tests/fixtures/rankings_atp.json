@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "player_id": 101,
+      "player_name": "Test Player A",
+      "system": "atp",
+      "tour": "atp",
+      "rank": 12,
+      "points": 2500,
+      "surface": "overall",
+      "matches": null,
+      "previous_rank": 13,
+      "rank_movement": 1,
+      "rating": null,
+      "effective_date": "2026-11-02",
+      "observed_at": "2026-11-03T06:00:00Z"
+    },
+    {
+      "player_id": null,
+      "player_name": "Test Player E",
+      "system": "atp",
+      "tour": "atp",
+      "rank": 13,
+      "points": 2400,
+      "surface": "overall",
+      "matches": null,
+      "previous_rank": 12,
+      "rank_movement": -1,
+      "rating": null,
+      "effective_date": "2026-11-02",
+      "observed_at": "2026-11-03T06:00:00Z"
+    }
+  ],
+  "meta": {
+    "limit": 200,
+    "offset": 0,
+    "count": 2,
+    "total": 2,
+    "has_more": false,
+    "coverage": {
+      "as_of": null,
+      "effective_date": "2026-11-02",
+      "systems_requested": [
+        "atp"
+      ],
+      "systems_resolved": [
+        "atp"
+      ]
+    }
+  }
+}

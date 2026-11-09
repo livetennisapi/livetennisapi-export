@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "id": 7001,
+      "event_date": "2026-11-10",
+      "start_time": "2026-11-10T10:00:00Z",
+      "player1_id": 101,
+      "player2_id": 303,
+      "tour": "atp",
+      "tournament": "Example Open",
+      "round": "Semi-final",
+      "round_code": "SF",
+      "surface": "hard",
+      "player1_name": "Test Player A",
+      "player2_name": "Test Player C",
+      "status": "scheduled"
+    },
+    {
+      "id": 7002,
+      "event_date": "2026-11-10",
+      "start_time": null,
+      "player1_id": null,
+      "player2_id": null,
+      "tour": "atp",
+      "tournament": "Example Open",
+      "round": "Semi-final",
+      "round_code": "SF",
+      "surface": "hard",
+      "player1_name": null,
+      "player2_name": null,
+      "status": "scheduled"
+    }
+  ],
+  "meta": {
+    "limit": 200,
+    "offset": 0,
+    "count": 2,
+    "total": 2,
+    "has_more": false
+  }
+}

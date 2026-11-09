@@ -1,0 +1,49 @@
+{
+  "data": [
+    {
+      "id": 101,
+      "name": "Test Player A",
+      "tour": "atp",
+      "country": "aaa",
+      "ranking": 12,
+      "ranking_points": 2500,
+      "ranking_status": "ranked",
+      "hand": "R",
+      "backhand": 2,
+      "birthday": null,
+      "height_cm": null,
+      "is_doubles_team": false,
+      "profile_version": 1,
+      "data_completeness": {
+        "known": 3,
+        "of": 9
+      }
+    },
+    {
+      "id": 303,
+      "name": "Test Player C",
+      "tour": "atp",
+      "country": "aaa",
+      "ranking": null,
+      "ranking_points": null,
+      "ranking_status": "unranked",
+      "hand": "R",
+      "backhand": 2,
+      "birthday": null,
+      "height_cm": null,
+      "is_doubles_team": false,
+      "profile_version": 1,
+      "data_completeness": {
+        "known": 3,
+        "of": 9
+      }
+    }
+  ],
+  "meta": {
+    "limit": 200,
+    "offset": 0,
+    "count": 2,
+    "total": 2,
+    "has_more": false
+  }
+}
