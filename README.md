@@ -37,7 +37,7 @@ You can get a free key at [livetennisapi.com/subscribe/free](https://livetennisa
 export LIVETENNISAPI_KEY=twjp_...
 ```
 
-The command reads the key from that variable only. There is no flag for it, so it stays out of your shell history.
+The command reads the key from that variable only. There is no flag for it, so the key is never part of the export command.
 
 ## Command line
 
