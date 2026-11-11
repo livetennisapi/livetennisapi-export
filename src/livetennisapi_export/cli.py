@@ -5,7 +5,7 @@
     livetennisapi-export player 101 202 -o players.jsonl
 
 The key is read from ``LIVETENNISAPI_KEY``. There is deliberately no flag for
-it, so it never lands in shell history or a process list.
+it, so the key is never part of the export command or its process arguments.
 """
 
 from __future__ import annotations
