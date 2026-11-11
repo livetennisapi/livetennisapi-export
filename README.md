@@ -37,7 +37,7 @@ You can get a free key at [livetennisapi.com/subscribe/free](https://livetennisa
 export LIVETENNISAPI_KEY=twjp_...
 ```
 
-The command reads the key from that variable only. There is no flag for it, so it stays out of your shell history.
+The command reads the key from that variable only. There is no flag for it, so the key is never part of the export command.
 
 ## Command line
 
@@ -91,6 +91,8 @@ CSV and Parquet need flat columns, so nested objects become dotted column names 
 
 Nothing is written until every page has arrived. A request that fails halfway leaves no half-written file.
 
+The [export formats guide](https://docs.livetennisapi.com/export-formats.html) says when each format fits. It also shows how to read the files back in pandas, DuckDB and R.
+
 ## Python
 
 ```python
@@ -126,6 +128,7 @@ The tests never call the API. They run the real client against a mock transport 
 
 - Live Tennis API: https://livetennisapi.com
 - Documentation: https://docs.livetennisapi.com
+- Export formats guide: https://docs.livetennisapi.com/export-formats.html
 - OpenAPI spec: https://github.com/livetennisapi/openapi
 - Python client: https://github.com/livetennisapi/livetennisapi-python
 
